@@ -357,7 +357,7 @@
       font-size: 24px;
     }
 
-    .success-title {
+    .success-state h2 {
       font-family: var(--font-head);
       font-size: 20px;
       font-weight: 700;
@@ -415,22 +415,15 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 40px 24px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.2);
+      padding: 32px 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.18);
       border-top: 1px solid var(--border);
       margin-top: 80px;
       width: 100%;
     }
-    .footer-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; align-items: center; }
-    .footer-brand { font-size: 13px; color: var(--muted); }
-    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--orange); }
-    .footer-links .footer-cta { color: var(--orange); font-weight: 500; }
-    .footer-contact { font-size: 11px; color: rgba(255,255,255,0.2); }
-    .footer-contact a { color: rgba(255,255,255,0.35); text-decoration: none; }
-    .footer-contact a:hover { color: var(--orange); }
+
+    footer a { color: var(--orange); text-decoration: none; opacity: 0.7; }
 
     /* ── MOBILE ── */
     @media (max-width: 480px) {
@@ -445,13 +438,11 @@
 
   <div class="glow-blob"></div>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">The <span>Middle</span>man</div>
     <div class="nav-badge">Coming Soon</div>
   </nav>
 
-  <!-- MAIN -->
   <div class="wrapper">
     <div class="hero">
       <div class="hero-eyebrow">OAU Ile-Ife Initiative</div>
@@ -459,7 +450,6 @@
       <p class="hero-sub">The campus marketplace that connects you to the closest verified buyer, seller, or runner — instantly. Launching at OAU first.</p>
     </div>
 
-    <!-- STATS -->
     <div class="stats">
       <div class="stat">
         <span class="stat-num">0km</span>
@@ -477,13 +467,11 @@
       </div>
     </div>
 
-    <!-- FORM CARD -->
     <div class="card">
       <div id="form-view">
         <p class="card-title">Get early access</p>
         <p class="card-sub">Be first in when we go live. We'll alert you the moment alpha opens.</p>
 
-        <!-- ROLE TOGGLE -->
         <div class="role-toggle" role="group" aria-label="Select your role">
           <button class="role-btn active" data-role="Buyer" onclick="setRole(this)">Buyer</button>
           <button class="role-btn" data-role="Seller" onclick="setRole(this)">Seller</button>
@@ -513,15 +501,13 @@
         <p class="privacy">🔒 Your details are safe. No spam, ever.</p>
       </div>
 
-      <!-- SUCCESS -->
       <div class="success-state" id="success-view">
         <div class="success-icon">✓</div>
-        <p class="success-title">You're on the list!</p>
+        <h2>You're on the list!</h2>
         <p class="success-sub">We'll alert you the moment The Middleman goes live at OAU. Tell a friend — the more of us, the faster this grows.</p>
       </div>
     </div>
 
-    <!-- FEATURES -->
     <div class="features">
       <div class="feat"><span class="feat-dot"></span>Proximity-first results</div>
       <div class="feat"><span class="feat-dot"></span>Verified sellers only</div>
@@ -532,25 +518,36 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        &copy; 2026 <span style="font-family:'Syne',sans-serif;font-weight:700;color:#F0EDE8;">The <span style="color:#F26419;">Middle</span>man</span>. Built at OAU Ile-Ife.
-      </div>
-      <div class="footer-links">
-        <a href="/legal.html#terms">Terms of Use</a>
-        <a href="/legal.html#privacy">Privacy Policy</a>
-        <a href="/agreement.html" class="footer-cta">Join Founding Team</a>
-      </div>
-      <div class="footer-contact">
-        Contact: <a href="mailto:hello@themiddleman.com.ng">hello@themiddleman.com.ng</a>
-      </div>
-    </div>
+    © 2026 The Middleman &nbsp;·&nbsp; <a href="mailto:hello@themiddleman.com.ng">hello@themiddleman.com.ng</a> &nbsp;·&nbsp; OAU Ile-Ife, Nigeria
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
+    // 1. Initialize Supabase Connection
+const supabaseUrl = 'https://uwigyojtiudefnwjezhm.supabase.co'; // Fixed typo & removed trailing path
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3aWd5b2p0aXVkZWZud2plemhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNjY5MjcsImV4cCI6MjA5NDc0MjkyN30.X_GfdlRb-aPMrNPWan--iE3hM-vwev_Zgi1YtXYxihA'; 
+
+const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
     let selectedRole = 'Buyer';
+
+    // 2. Track Site Visit Automatically on Load
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        await _supabase
+          .from('site_visits')
+          .insert([{
+            page: window.location.pathname || '/',
+            referrer: document.referrer || null,
+            user_agent: navigator.userAgent || null,
+            visited_at: new Date().toISOString()
+          }]);
+        console.log("Visit tracked successfully.");
+      } catch (err) {
+        console.error("Error logging visit:", err.message);
+      }
+    });
 
     function setRole(btn) {
       document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
@@ -558,11 +555,13 @@
       selectedRole = btn.dataset.role;
     }
 
+    // 3. Handle Form Submission to Supabase
     async function handleSubmit() {
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const whatsapp = document.getElementById('whatsapp').value.trim();
 
+      // Form validation
       if (!name || !email || !whatsapp) {
         shake(document.querySelector('.card'));
         return;
@@ -573,25 +572,50 @@
         return;
       }
 
+      // UI Loading State Transition
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
       btn.querySelector('.btn-text').style.display = 'none';
       btn.querySelector('.btn-loading').style.display = 'block';
 
-      // ── Supabase will be wired here by Gemini ──
-      // For now: log and show success
-      console.log({ name, email, whatsapp, role: selectedRole, timestamp: new Date().toISOString() });
+      try {
+        // Insert Data into early_access Supabase Table
+        const { error } = await _supabase
+          .from('early_access')
+          .insert([
+            {
+              full_name: name,
+              email: email,
+              phone: whatsapp,
+              role: selectedRole
+            }
+          ]);
 
-      await delay(1200);
+        if (error) throw error;
 
-      document.getElementById('form-view').style.display = 'none';
-      const success = document.getElementById('success-view');
-      success.style.display = 'block';
-      success.style.animation = 'fade-up 0.5s ease both';
+        // Transition into Success View State
+        document.getElementById('form-view').style.display = 'none';
+        const success = document.getElementById('success-view');
+        success.style.display = 'block';
+        success.style.animation = 'fade-up 0.5s ease both';
+
+      } catch (error) {
+        console.error('Submission failed:', error.message);
+
+        let msg = 'Something went wrong. Please try again.';
+        if (error.message && (error.message.includes('duplicate') || error.code === '23505')) {
+          msg = 'This email is already on the waitlist!';
+        }
+        alert(msg);
+        
+        // Reset button loading states if it fails
+        btn.disabled = false;
+        btn.querySelector('.btn-text').style.display = 'block';
+        btn.querySelector('.btn-loading').style.display = 'none';
+      }
     }
 
     function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
     function shake(el) {
       el.style.animation = 'none';
       el.style.transition = 'transform 0.1s';
