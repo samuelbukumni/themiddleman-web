@@ -34,7 +34,6 @@
       position: relative;
     }
 
-    /* ── GRAIN OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -45,7 +44,6 @@
       opacity: 0.4;
     }
 
-    /* ── GLOW BG ── */
     .glow-blob {
       position: fixed;
       width: 600px;
@@ -65,7 +63,6 @@
       50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
     }
 
-    /* ── LAYOUT ── */
     .wrapper {
       position: relative;
       z-index: 1;
@@ -78,7 +75,6 @@
       gap: 0;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -115,7 +111,6 @@
       border-radius: 99px;
     }
 
-    /* ── HERO ── */
     .hero {
       text-align: center;
       max-width: 680px;
@@ -159,11 +154,7 @@
       margin-bottom: 24px;
     }
 
-    h1 em {
-      font-style: normal;
-      color: var(--orange);
-      position: relative;
-    }
+    h1 em { font-style: normal; color: var(--orange); position: relative; }
 
     .hero-sub {
       font-size: clamp(15px, 3vw, 17px);
@@ -174,7 +165,6 @@
       margin: 0 auto 48px;
     }
 
-    /* ── STATS ROW ── */
     .stats {
       display: flex;
       gap: 32px;
@@ -184,9 +174,7 @@
       animation: fade-up 0.8s 0.15s ease both;
     }
 
-    .stat {
-      text-align: center;
-    }
+    .stat { text-align: center; }
 
     .stat-num {
       font-family: var(--font-head);
@@ -210,7 +198,6 @@
       align-self: center;
     }
 
-    /* ── FORM CARD ── */
     .card {
       width: 100%;
       max-width: 480px;
@@ -240,13 +227,8 @@
       margin-bottom: 6px;
     }
 
-    .card-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
+    .card-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
 
-    /* ── ROLE TOGGLE ── */
     .role-toggle {
       display: flex;
       gap: 6px;
@@ -271,13 +253,8 @@
       transition: all 0.2s;
     }
 
-    .role-btn.active {
-      background: var(--orange);
-      color: #fff;
-      font-weight: 600;
-    }
+    .role-btn.active { background: var(--orange); color: #fff; font-weight: 600; }
 
-    /* ── INPUTS ── */
     .field { margin-bottom: 14px; }
 
     .field label {
@@ -305,13 +282,8 @@
     }
 
     .field input::placeholder { color: rgba(255,255,255,0.2); }
+    .field input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
 
-    .field input:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px var(--orange-glow);
-    }
-
-    /* ── SUBMIT ── */
     .btn-submit {
       width: 100%;
       background: var(--orange);
@@ -333,16 +305,10 @@
     .btn-submit:hover { background: #d95a14; transform: translateY(-1px); box-shadow: 0 8px 24px var(--orange-glow); }
     .btn-submit:active { transform: translateY(0); }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
     .btn-submit .btn-text { transition: opacity 0.2s; }
     .btn-submit .btn-loading { display: none; }
 
-    /* ── SUCCESS STATE ── */
-    .success-state {
-      display: none;
-      text-align: center;
-      padding: 16px 0;
-    }
+    .success-state { display: none; text-align: center; padding: 16px 0; }
 
     .success-icon {
       width: 56px;
@@ -365,21 +331,10 @@
       margin-bottom: 8px;
     }
 
-    .success-sub {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-    /* ── PRIVACY NOTE ── */
-    .privacy {
-      font-size: 11px;
-      color: rgba(255,255,255,0.2);
-      text-align: center;
-      margin-top: 14px;
-    }
+    .privacy { font-size: 11px; color: rgba(255,255,255,0.2); text-align: center; margin-top: 14px; }
 
-    /* ── FEATURES STRIP ── */
     .features {
       display: flex;
       flex-wrap: wrap;
@@ -402,13 +357,112 @@
       padding: 7px 14px;
     }
 
-    .feat-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--orange);
-      border-radius: 50%;
-      flex-shrink: 0;
+    .feat-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── TEAM SECTION ── */
+    .team-section {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 760px;
+      margin: 100px auto 0;
+      padding: 0 24px;
+      text-align: center;
     }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--orange);
+      opacity: 0.5;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 36px;
+      text-align: left;
+    }
+
+    .role-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .role-card:hover { border-color: rgba(242,100,25,0.4); transform: translateY(-2px); }
+
+    .role-card-icon { font-size: 20px; margin-bottom: 10px; display: block; }
+
+    .role-card-title {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .role-card-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    .btn-apply {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--orange);
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      border: 1px solid rgba(242,100,25,0.4);
+      border-radius: 10px;
+      padding: 14px 32px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-apply:hover {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--orange-glow);
+    }
+
+    .apply-note { font-size: 12px; color: rgba(255,255,255,0.2); margin-top: 14px; }
 
     /* ── FOOTER ── */
     footer {
@@ -424,6 +478,15 @@
     }
 
     footer a { color: var(--orange); text-decoration: none; opacity: 0.7; }
+    footer a:hover { opacity: 1; }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
 
     /* ── MOBILE ── */
     @media (max-width: 480px) {
@@ -431,6 +494,8 @@
       .card { padding: 28px 20px; border-radius: 16px; }
       .stat-divider { display: none; }
       h1 { letter-spacing: -1.5px; }
+      .roles-grid { grid-template-columns: 1fr 1fr; }
+      .team-section { margin-top: 60px; }
     }
   </style>
 </head>
@@ -518,50 +583,107 @@
     </div>
   </div>
 
+  <!-- ── TEAM SECTION ── -->
+  <section class="team-section">
+    <div class="section-eyebrow">We're Hiring</div>
+    <h2 class="section-title">Build this with us.</h2>
+    <p class="section-sub">We're a small founding team at OAU putting together the right people to launch The Middleman. No salary yet — real experience, real credit, and a seat at the table from day one.</p>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <span class="role-card-icon">⚛️</span>
+        <div class="role-card-title">Frontend Developer</div>
+        <div class="role-card-desc">React / Next.js. Build the screens students see and touch every day.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">🎨</span>
+        <div class="role-card-title">UI/UX Designer</div>
+        <div class="role-card-desc">Figma. Design flows that feel fast, trusted, and native to OAU.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">🗄️</span>
+        <div class="role-card-title">Backend Developer</div>
+        <div class="role-card-desc">Supabase / Node.js. Keep data moving securely between users.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">📣</span>
+        <div class="role-card-title">Marketing Lead</div>
+        <div class="role-card-desc">Build campus hype, manage socials, drive our first wave of users.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">🔐</span>
+        <div class="role-card-title">Cybersecurity Analyst</div>
+        <div class="role-card-desc">Audit code, harden APIs, protect student data from day one.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">🧪</span>
+        <div class="role-card-title">QA / Software Tester</div>
+        <div class="role-card-desc">Break things intentionally. Find bugs before students do.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">🚚</span>
+        <div class="role-card-title">Operations Lead</div>
+        <div class="role-card-desc">Manage runners, verify sellers, handle on-ground logistics at OAU.</div>
+      </div>
+      <div class="role-card">
+        <span class="role-card-icon">📋</span>
+        <div class="role-card-title">Product Coordinator</div>
+        <div class="role-card-desc">Keep the team aligned, track milestones, clear every blocker.</div>
+      </div>
+    </div>
+
+    <a class="btn-apply" href="https://forms.gle/UiGucVNqFSi47sKS6" target="_blank" rel="noopener">
+      Apply Now →
+    </a>
+    <p class="apply-note">Rolling applications · OAU students preferred · WhatsApp: +2347066316607</p>
+  </section>
+
   <footer>
-    © 2026 The Middleman &nbsp;·&nbsp; <a href="mailto:hello@themiddleman.com.ng">hello@themiddleman.com.ng</a> &nbsp;·&nbsp; OAU Ile-Ife, Nigeria
+    <div>© 2026 The Middleman &nbsp;·&nbsp; <a href="mailto:hello@themiddleman.com.ng">hello@themiddleman.com.ng</a> &nbsp;·&nbsp; OAU Ile-Ife, Nigeria</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="https://wa.me/2347066316607" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    // 1. Initialize Supabase Connection
-const supabaseUrl = 'https://uwigyojtiudefnwjezhm.supabase.co'; // Fixed typo & removed trailing path
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3aWd5b2p0aXVkZWZud2plemhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNjY5MjcsImV4cCI6MjA5NDc0MjkyN30.X_GfdlRb-aPMrNPWan--iE3hM-vwev_Zgi1YtXYxihA'; 
+    // ── SUPABASE INIT ──
+    const supabaseUrl = 'https://uwigyojtiudefnwjezhm.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3aWd5b2p0aXVkZWZud2plemhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNjY5MjcsImV4cCI6MjA5NDc0MjkyN30.X_GfdlRb-aPMrNPWan--iE3hM-vwev_Zgi1YtXYxihA';
+    const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
     let selectedRole = 'Buyer';
 
-    // 2. Track Site Visit Automatically on Load
+    // ── VISIT TRACKING ──
     window.addEventListener('DOMContentLoaded', async () => {
       try {
-        await _supabase
-          .from('site_visits')
-          .insert([{
-            page: window.location.pathname || '/',
-            referrer: document.referrer || null,
-            user_agent: navigator.userAgent || null,
-            visited_at: new Date().toISOString()
-          }]);
-        console.log("Visit tracked successfully.");
+        await _supabase.from('site_visits').insert([{
+          page: window.location.pathname || '/',
+          referrer: document.referrer || null,
+          user_agent: navigator.userAgent || null,
+          visited_at: new Date().toISOString()
+        }]);
       } catch (err) {
-        console.error("Error logging visit:", err.message);
+        // Silent fail — never break UI for analytics
       }
     });
 
+    // ── ROLE TOGGLE ──
     function setRole(btn) {
       document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       selectedRole = btn.dataset.role;
     }
 
-    // 3. Handle Form Submission to Supabase
+    // ── FORM SUBMISSION ──
     async function handleSubmit() {
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const whatsapp = document.getElementById('whatsapp').value.trim();
 
-      // Form validation
       if (!name || !email || !whatsapp) {
         shake(document.querySelector('.card'));
         return;
@@ -572,43 +694,32 @@ const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
         return;
       }
 
-      // UI Loading State Transition
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
       btn.querySelector('.btn-text').style.display = 'none';
       btn.querySelector('.btn-loading').style.display = 'block';
 
       try {
-        // Insert Data into early_access Supabase Table
-        const { error } = await _supabase
-          .from('early_access')
-          .insert([
-            {
-              full_name: name,
-              email: email,
-              phone: whatsapp,
-              role: selectedRole
-            }
-          ]);
+        const { error } = await _supabase.from('early_access').insert([{
+          full_name: name,
+          email: email,
+          phone: whatsapp,
+          role: selectedRole
+        }]);
 
         if (error) throw error;
 
-        // Transition into Success View State
         document.getElementById('form-view').style.display = 'none';
         const success = document.getElementById('success-view');
         success.style.display = 'block';
         success.style.animation = 'fade-up 0.5s ease both';
 
       } catch (error) {
-        console.error('Submission failed:', error.message);
-
         let msg = 'Something went wrong. Please try again.';
         if (error.message && (error.message.includes('duplicate') || error.code === '23505')) {
           msg = 'This email is already on the waitlist!';
         }
         alert(msg);
-        
-        // Reset button loading states if it fails
         btn.disabled = false;
         btn.querySelector('.btn-text').style.display = 'block';
         btn.querySelector('.btn-loading').style.display = 'none';
@@ -616,8 +727,8 @@ const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
     }
 
     function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
     function shake(el) {
-      el.style.animation = 'none';
       el.style.transition = 'transform 0.1s';
       let i = 0;
       const interval = setInterval(() => {
