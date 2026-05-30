@@ -721,6 +721,48 @@
     })();
     // ────────────────────────────────────────
 
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme')) return;
+
+      setTimeout(() => {
+        const toast = document.createElement('div');
+        toast.id = 'theme-toast';
+        toast.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span>Reading in the light? Try Dark Mode</span>
+            <button onclick="acceptThemeSuggestion()" style="background: var(--orange); color: white; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: var(--font-head); font-size: 11px;">Switch</button>
+            <span onclick="document.getElementById('theme-toast').remove()" style="cursor: pointer; opacity: 0.5; padding-left: 5px;">✕</span>
+          </div>
+        `;
+
+        Object.assign(toast.style, {
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          backgroundColor: 'var(--surface)',
+          color: 'var(--text)',
+          border: '1px solid var(--border)',
+          padding: '12px 16px',
+          borderRadius: '12px',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+          zIndex: '1000',
+          fontSize: '13px',
+          fontFamily: 'var(--font-body)',
+          animation: 'fade-up 0.5s ease both'
+        });
+
+        document.body.appendChild(toast);
+      }, 120000); 
+    });
+
+    function acceptThemeSuggestion() {
+      toggleTheme(); 
+      const toast = document.getElementById('theme-toast');
+      if (toast) toast.remove(); 
+    }
+    // ───────────────────────────────────────────────────
+
+    
     // ── VISIT TRACKING ──
     window.addEventListener('DOMContentLoaded', async () => {
       try {
