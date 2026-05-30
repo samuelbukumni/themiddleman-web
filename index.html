@@ -22,6 +22,40 @@
       --font-head: 'Syne', sans-serif;
       --font-body: 'DM Sans', sans-serif;
     }
+    /* Toggle Button Style */
+    html.light-theme nav { background: rgba(249,249,251,0.8); }
+    html.light-theme .role-toggle { background: rgba(0,0,0,0.03); }
+    html.light-theme .field input { background: rgba(0,0,0,0.02); color: #1A1A1A; }
+    html.light-theme .field input::placeholder { color: rgba(0,0,0,0.3); }
+    html.light-theme .feat { background: rgba(0,0,0,0.02); }
+    html.light-theme footer { color: rgba(0,0,0,0.4); }
+    html.light-theme body::before { opacity: 0.15; }
+
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-toggle-btn:hover {
+      border-color: var(--orange);
+    }
+
+    /* ── LIGHT THEME OVERRIDES ── */
+    html.light-theme {
+      --bg: #F9F9FB;
+      --surface: #FFFFFF;
+      --border: rgba(0,0,0,0.08);
+      --text: #1A1A1A;
+      --muted: #666666;
+    }
 
     html { scroll-behavior: smooth; }
 
@@ -505,9 +539,12 @@
 
   <nav>
     <div class="nav-logo">The <span>Middle</span>man</div>
-    <div class="nav-badge">Coming Soon</div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">☀️</button>
+      <div class="nav-badge">Coming Soon</div>
+    </div>
   </nav>
-
+  
   <div class="wrapper">
     <div class="hero">
       <div class="hero-eyebrow">OAU Ile-Ife Initiative</div>
@@ -656,6 +693,33 @@
     const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
     let selectedRole = 'Buyer';
+    function toggleTheme() {
+      const html = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      
+      if (html.classList.contains('light-theme')) {
+        html.classList.remove('light-theme');
+        btn.textContent = '☀️'; // Show sun when in dark mode
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.add('light-theme');
+        btn.textContent = '🌙'; // Show moon when in light mode
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Check for saved theme preference immediately on page load
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-theme');
+        document.addEventListener('DOMContentLoaded', () => {
+          const btn = document.getElementById('theme-toggle');
+          if (btn) btn.textContent = '🌙';
+        });
+      }
+    })();
+    // ────────────────────────────────────────
 
     // ── VISIT TRACKING ──
     window.addEventListener('DOMContentLoaded', async () => {
